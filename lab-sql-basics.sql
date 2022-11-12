@@ -114,3 +114,11 @@ from trans
 group by account_id
 order by difference desc
 limit 10;
+
+select account_id,
+   round(sum(case when type = 'prijem' then amount else 0 end)) 
+   - round(sum(case when type = 'vydaj' then amount else 0 end)) as balance
+from bank.trans
+group by account_id
+order by balance DESC
+limit 10;
